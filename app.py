@@ -1,10 +1,11 @@
-from flask import Flask
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-# Register blueprints here
-# from app.module import module_blueprint
-# app.register_blueprint(module_blueprint)
+@app.get("/")
+def home():
+    return "Deployed from GitHub to Azure!"
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.get("/health")
+def health():
+    return jsonify(status="ok"), 200
